@@ -1,0 +1,72 @@
+{% extends 'autofarmapage/base_medico.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- CONTENIDO DE LA HTML-->
+
+
+<div class="contenido">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12 center xs">
+      <h4 id="encabezadoform">Agregar Tutor al Paciente:</h4>
+    </div>
+  </div>
+
+  <!--Formulario agregar paciente -->
+  <form method="GET" class="formulario-buscar">
+    {% csrf_token %}
+    <div class="contenedor-inputs centrado">
+
+      <input class="input-40 campo-buscar" type="text" name="busqueda" required placeholder="Ingrese RUT del tutor" />
+      <button class="b-buscar" formmethod="GET" type="submit" name="submit">
+        <i class="fa fa-search fa-lg" style="font-size: 20px; color: #fff;"></i>
+      </button>
+
+  </form>
+
+  <div class="row center-xs input-100-s opcion-mensaje">
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h4 class="mensaje">No se ecuentra registro de tutor</h4>
+
+    <a href="{% url 'registrar-tutor' %}">
+      <button class="b-agregarpaciente" type="button">
+        <h4>Registrar tutor</h4>
+      </button></a>
+
+    {% endif %}
+  </div>
+
+
+
+  <!-- RUT paciente y tutor -->
+  <form class="ruts-conte" method="POST">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-xs-12 center-xs">
+
+        <label>RUT paciente:
+          <input name="rutpa" value="{{paciente.rut}}" required placeholder="Rut paciente" disabled /></label>
+
+        <label>RUT tutor:
+          <input name="rutu" value="{{ruttutor}}" required placeholder="Rut tutor" disabled /></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+        <button class="btn b-guardar" formmethod="POST">Agregar</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--Enlace css-->
+        <link rel="stylesheet" href="{% static 'css/estiloBaseAdmi.css' %}">
+        <!--Enlace flexbox-->
+        <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}">
+
+        <!--  Enlace a fuentes-->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap"
+            rel="stylesheet">
+
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap"
+            rel="stylesheet">
+        <title>Editar Usuario</title>
+    </head>
+    
+    <body>
+        <div class="container">
+            <header class="row backgroundheader">
+                <div class="col-xs-12 col-lg-12" >
+                   <div class="header"> 
+                       <div class="col-xs-12 end-xs">
+                            <a href="{% url 'homeadmi' %}"><img src="{% static 'imagenes/LOGO_blanco.png' %}" alt="Logopaginablanco" height="40" width="200"> </a>
+                            <p>{{ user.rut.id_centro.nombre_centro }}</p>
+                            <div class="col-xs-12 star-xs">
+                                <h4>{{ user.rut.nombres|upper }} {{ user.rut.apellido_paterno|upper }}</h4>
+                            </div>
+                       </div>
+                   </div>
+                </div>
+            </header>
+
+            <section class="row section">
+                <div class="col-xs-12 col-md-2 col-lg-2 star-large backgroundleftside">
+                    <div class="sideleft">
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-12 center-lg">
+                                <div class="button_usuario">
+                                    <a href="{% url 'agregar-usuario' %}">
+                                        <img src="{% static 'imagenes/agregarUsuario.png' %}"
+                                            alt="agregar_Usuario" height="60"
+                                            width="60">
+                                    </a>
+                                    <h4>Crear Usuario</h4>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-12 center-lg">
+                                <div class="button_listarusuarios">
+                                    <a href="{% url 'listar-usuario' %}">
+                                        <img src="{% static 'imagenes/listarusuarios.png' %}"
+                                            alt="listar_usuario" height="60"
+                                            width="60">
+                                    </a>
+                                    <h4>Listar Usuarios</h4>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-12 center-lg">
+                                <div class="button_listarinformes">
+                                    <a href="{% url 'listar-informe' %}">
+                                        <img src="{% static 'imagenes/listarInformes.png' %}"
+                                            alt="listar_informes" height="60"
+                                            width="60">
+                                    </a>
+                                    <h4>Informes</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-md-10 col-lg-10 center-xs backgroundrightside">
+                    <div class="sideright">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                <h4 id="encabezadoform">INFORMACIÓN DEL USUARIO</h4>
+                            </div>
+                        </div>
+
+                        {% if persona %}
+                        {% for person in persona %}
+                        <form method="POST">{% csrf_token %}
+                            <!--Nombre-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" id="stname"
+                                        type="text" name="nombres"
+                                        value="{{person.nombres}}">
+                                </div>
+                            </div>
+
+                            <!--apellido p-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" type="text"
+                                        name="apellido_paterno"
+                                        value="{{person.apellido_paterno}}">
+                                </div>
+                            </div>
+
+                            <!--apellido m-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" type="text"
+                                        name="apellido_materno"
+                                        value="{{person.apellido_materno}}">
+                                </div>
+                            </div>
+
+                            <!--rut-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" type="text"
+                                        name="rut" maxlength="8"
+                                        value="{{person.rut}}">
+                                </div>
+                            </div>
+
+                            <!--telefono-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" type="tel"
+                                        pattern="[0-9]{9}" name="telefono"
+                                        value="{{person.telefono}}">
+                                </div>
+                            </div>
+
+                            <!--email-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" type="email"
+                                        name="correo_electronico"
+                                        value="{{person.correo_electronico}}">
+                                </div>
+                            </div>
+
+                            <!--direccion-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <input class="intputs" type="text"
+                                        name="direccion"
+                                        value="{{person.direccion}}">
+                                </div>
+                            </div>
+
+                            <!--comuna-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <select required name="id_comuna">
+                                        <option
+                                            value="{{person.id_comuna.id_comuna}}">{{person.id_comuna.nombre_comuna}}</option>
+                                        {%for n in ciudades %}
+                                        <option value="{{n.id_comuna}}">{{n.nombre_comuna}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--  region
+        <div class="row">
+             <div class="col-xs-12 col-md-12 col-lg-12 center xs">
+                     
+                     <select required name="nombre_region" >
+                        
+                             <option value=""></option>
+                        
+                     </select>
+             </div>
+         </div>-->
+                            <!--centro de salud-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <select required name="id_centro">
+                                        <option
+                                            value="{{person.id_centro.id_centro}}">{{person.id_centro.nombre_centro}}</option>
+                                        {% for e in centro_salud%}
+                                        <option value="{{e.id_centro}}">{{e.nombre_centro}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--rut tutor-->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <select required name="rut_tutor">
+                                       
+                                        <option value="{{person.rut_tutor.rut.rut}}">{{person.rut_tutor.rut.rut }}</option>
+                                    
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-12 center-xs">
+                                    <button class="buttonenviar">ENVIAR</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                    <a id="edit" href="{% url 'deshabilitarpage' person.rut %}">DESHABILITAR</div></a>
+                                </div>
+                            </div>
+    
+    
+    
+                            <div class="row center-xs mensajes">
+                                {% if messages %}
+                                <ul>
+                                    {% for message in messages %} 
+                                    <li class="{{ message.tags }}">{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </form>
+
+                        {% endfor%}
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

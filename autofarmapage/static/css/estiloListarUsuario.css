@@ -1,0 +1,261 @@
+*{
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.backgroundheader{
+    background: #68c2dc;
+    padding: 10px;
+    color: #ffffff;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.1);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.section{
+    padding-top: 5.2rem;
+
+    
+}
+.backgroundleftside{
+    background: #b9dcf0;
+    display: flex;
+    flex-direction: column;
+    /*min-height: 100vh;*/
+    min-height: 10vh;
+}
+
+.button_usuario{
+  
+    background: #b9dcf0;
+    border: #ffffff 1.3px solid;
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    color: #1290cb ;
+    transition: 1s;
+    
+
+}
+
+.button_usuario:hover{
+    background: #f2f5fa;
+
+}
+
+
+
+.button_listarusuarios{
+ 
+    background: #b9dcf0;
+    border: #ffffff 1.3px solid;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    color: #1290cb ;
+    transition: 1s;
+}
+
+.button_listarusuarios:hover{
+    background: #f2f5fa;
+
+}
+
+.button_listarinformes{
+
+    background: #b9dcf0;
+    border: #ffffff 1.3px solid;
+    margin-left: 8px;
+    margin-bottom:8px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    color: #1290cb ;
+    transition: 1s;
+}
+
+.button_listarinformes:hover{
+    background: #f2f5fa;
+
+}
+
+
+#encabezadoform{
+    font-weight: lighter;
+    padding: 55px;
+    
+}
+/*ESTILO CAMPOS*/
+input{
+    border: none;
+    background: #FFFFFF;
+    width: 200x;
+    height: 35px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #666666;
+}
+
+.buttonBuscar{
+    border: none;
+    background: #1290cb;
+    height: 35px;
+    width: 35px;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    margin-bottom: 30px;
+    
+    
+
+}
+
+.inputCard{
+    border: none;
+    background: #f2f5fa;
+    width: 400x;
+    height: 35px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #666666;
+}
+
+.buttonEditar{
+
+    border: none;
+    background: #1290cb;
+    height: 35px;
+    width: 70px;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    margin-bottom: 30px;
+
+
+}
+.backgroundCard a{
+    text-decoration: none;
+    background: #1290cb;
+    color: #ffffff;
+    padding: 5px;
+}
+
+
+
+.backgroundCard #arrowe{
+   text-decoration: none;
+   background: none;
+}
+
+
+#buttomIcon{
+    border:1px solid lightgray;
+    left: 0px;
+    right: 0px;
+    margin-top: 8px;
+    border-radius: 10px 10px 10px 10px;
+    
+
+   
+}
+
+.buttomCard{
+    display: none;
+    margin-top: 25px;
+}
+
+.btnCardMed{
+    border: none;
+    background: #1290cb;
+    height: 35px;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+}
+
+.arrowe{
+    transition: 60s;
+}
+
+.buttonAddTutor{
+
+    border: none;
+    background: #1290cb;
+    height: 35px;
+    width: 70px;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    margin-bottom: 5px;
+   
+
+}
+
+
+.buttonDeshabilitar{
+
+    border: none;
+    background: #1290cb;
+    height: 35px;
+    width: 100px;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    
+
+}
+
+
+/*FIN ESTILO CAMPOS*/
+
+.backgroundCard{
+    background: #ffffff;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.1);
+    padding: 15px;
+    margin: 15px;
+    margin-left: 10rem;
+    margin-right: 20rem;
+}
+
+
+.backgroundrightside{
+    background: #f2f5fa;
+}
+
+
+
+@media(max-width:1080px){
+
+
+    .backgroundCard{
+
+        margin: 15px;
+
+    }
+
+
+    .button_usuario{
+  
+      
+        padding-left: 5px; 
+    }
+
+    .button_listarusuarios{
+        padding-left: 5px;
+    }
+    .button_listarinformes{
+        padding-left: 5px;
+    }
+    
+
+}
+
+.labelListaMed{
+    color: slategrey;
+    margin-top: 2px;
+    font-weight: lighter;
+}

@@ -1,0 +1,183 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+  
+ 
+}
+
+.header{
+    
+    padding: 20px;
+    
+}
+
+.backgroundheader{
+    
+    background: #68c2dc;
+    box-shadow: 0px 3px 0px rgba(0,0,0,.1);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.section{
+
+    padding-top: 6rem;
+}
+.backgroundleft{
+
+    background: #b9dcf0;
+    display: flex;
+    flex-direction: column;
+    /*min-height: 100vh;*/
+    min-height: 10vh;
+
+}
+
+.sideleft{
+    text-align: center;
+    padding: 30px;
+
+
+}
+
+#encabezado1{
+    color:#1290cb;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+#parrafo1{
+    color: #666666;
+}
+
+.a-imagen{
+
+    margin-top: 30px ;
+}
+
+.backgroundright{
+    
+    
+    background: #f2f5fa;
+   
+
+}
+
+.button_usuario{
+    color: #ffffff;
+  
+    margin-top: 130px;
+    margin-left: 250px;
+    margin-right: 15px;
+    background: #1290cb;
+    padding: 15px;
+    transition: 1s;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+    
+  
+}
+.button_usuario:hover{
+    background: #b9dcf0;
+
+
+}
+
+.button_listarusuarios{
+    
+    margin-top: 130px;
+    margin-left: 15px;
+    margin-right: 250px;
+    background: #1290cb;
+    color: #ffffff;
+    padding: 15px;
+    transition: 1s;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+ 
+}
+
+.button_listarusuarios:hover{
+    background: #b9dcf0;
+
+}
+
+.button_listarinformes{
+    
+
+    background: #1290cb;
+    margin-top: 30px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-bottom: 250px;
+    padding: 15px;
+    color: #ffffff;
+    transition: 1s;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+
+    
+}
+
+.button_listarinformes:hover{
+    background: #b9dcf0;
+
+}
+
+
+
+#h4listarinformes{
+    text-align: right;
+   
+    
+    
+}
+
+h4{
+    font-weight: lighter;
+}
+
+
+@media(max-width:1200px){
+
+    
+    
+    .button_usuario{
+      
+        margin-top: 15px;
+        margin-left: 30px;
+        margin-right: 30px;
+        background: #1290cb;
+      
+    }
+    
+    .button_listarusuarios{
+        
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 1px ;
+        background: #1290cb;
+     
+    }
+    
+    .button_listarinformes{
+        
+    
+        background: #1290cb;
+        margin-top: 1px;
+        margin-left: 30px;
+        margin-right: 30px;
+        
+    }
+
+
+
+}
+
+
+.position{
+    align-items: flex-end;
+}
+
+
+

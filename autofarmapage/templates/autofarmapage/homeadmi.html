@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Enlace flexbox-->
+    <link rel="stylesheet"  href="{% static 'css/flexboxgrid.css' %}">
+    <!--Enlace css-->
+    <link rel="stylesheet"  href="{% static 'css/estilohomeadmi.css' %}">
+    
+    <!--Enlaces fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="row backgroundheader">
+            <div class="col-xs-12 col-lg-12">
+                <div class="header">
+                    <div>
+                      <img src="{% static 'imagenes/LOGO_blanco.png' %}" alt="Logopaginablanco" height="60" width="300"> 
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="row section">
+            <div class="col-xs-12 col-lg-2 start-lg backgroundleft">          
+                <div class="sideleft">
+                    <img src="{% static 'imagenes/User-Profile.png' %}" alt="LogoUsuario" width="90" height="90">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12 center-xs">
+                            <h4 id="encabezado1">{{ user.rut.nombres|upper }} {{ user.rut.apellido_paterno|upper }}</h4>      
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12 center-xs">
+                            <h4 id="parrafo1">{{ user.id_tipo_empleado.tipo_empleado|upper }}</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 center-xs">
+                            <p>{{ user.rut.id_centro.nombre_centro|upper }}</p>
+                            <p>{{ user.rut.id_comuna.nombre_comuna }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12 center-xs">
+                            <a href="{% url 'password_change' %}">Cambiar Contraseña</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12 center-xs">                      
+                            <a href="/logout" ><img  class="a-imagen" src="{% static 'imagenes/Close1.png' %}" alt="cerrar_Sesion" height="auto" width="150"></a>                  
+                        </div>
+                    </div>       
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-lg-10 center-xs backgroundright">
+                <div class="sideright">                                 
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-6 center-lg">                              
+                            <div class="button_usuario">
+                                <a href="{% url 'agregar-usuario' %}"><img src="{% static 'imagenes/icono-agregar_usuario.png' %}" alt="agregarUsuario"  height="100" width="100"></a>
+                                <h4>Agregar Usuario</h4>
+                            </div>                                     
+                        </div>
+
+                        <div class="col-xs-12 col-lg-6 center-lg">    
+                            <div class="button_listarusuarios">
+                                <a href="{% url 'listar-usuario' %}"><img src="{% static 'imagenes/icono-listar_usuarios.png' %}" alt="listarUsuarios"  height="100" width="100"></a>
+                                 <h4>Listar Usuarios</h4>
+                            </div>                      
+                        </div>
+
+                        <div class="col-xs-12 col-lg-12">                                                       
+                            <div class="button_listarinformes">
+                                <a href="{% url 'listar-informe' %}"><img src="{% static 'imagenes/icono-listar_informes.png' %}" alt="listarinformes" height="100" width="100"></img></a>
+                                <h4 id="h4listarinformes">Listar Informes</h4>
+                            </div>           
+                        </div> 
+                    </div>         
+                </div>
+            </div> 
+        </section>
+    </div>   
+</body>
+</html>

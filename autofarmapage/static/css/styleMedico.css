@@ -1,0 +1,762 @@
+/* Índice */
+/*
+*  Generales
+*  Home médico
+*  Menú lateral
+*  Generales formulario
+*  Crear receta
+* 
+*  
+* 
+
+*/
+
+/*------------ 1 Generales ------------ */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+.barra_h {
+  height: 100%;
+}
+body {
+  background-color: #f2f5fa;
+}
+
+.titulo-seccion h4 {
+  font-weight: lighter;
+  padding: 40px;
+  text-transform: uppercase;
+}
+
+#encabezadoform {
+  font-weight: lighter;
+  padding: 55px;
+  text-transform: uppercase;
+
+}
+::placeholder {
+  color: #000;
+}
+
+.botones {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.centrado {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.btn {
+  border: none;
+  background: #1290cb;
+  height: 35px;
+  width: 150px;
+  color: #ffffff;
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  transition: 1s;
+  text-transform: uppercase;
+  font-weight: bold;
+  justify-content: space-evenly;
+}
+
+.btn:hover {
+  border: #1290cb 5px solid;
+  background: #f2f5fa;
+  color: #1290cb;
+}
+
+.btn h4 {
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  transition: 1s;
+  text-transform: uppercase;
+}
+
+.btn-x {
+  background-color: #68c2dc;
+  color: #fff;
+  border: none;
+  padding: 2px 3px;
+}
+
+.btn-2 {
+  background: #68c2dc;
+  border: none;
+  height: 30px;
+  width: 120px;
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: normal;
+  transition: 1s;
+  margin-bottom: 55px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-2:hover {
+  background: #1290cb;
+  color: #1290cb;
+}
+
+.btn-2 h4 {
+  font-family: "Roboto", sans-serif;
+  font-size: normal;
+  transition: 1s;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+
+/*------------ 2 Home médico ------------ */
+
+.backgroundheader-home {
+  background: #68c2dc;
+  box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: relative;
+  padding: 20px;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.home-medico {
+  background: #b9dcf0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.b-lateral {
+  text-align: center;
+  padding: 30px;
+}
+
+#encabezado1 {
+  color: #1290cb;
+  margin-top: 25px;
+  font-weight: bold;
+
+}
+
+#parrafo1 {
+  color: #666666;
+}
+
+.cerrar {
+  width: 100%;
+}
+.img-perfil {
+  position: fixed;
+  bottom: 1%;
+  left: 3%;
+  vertical-align: bottom;
+}
+
+.menu {
+  background: #f2f5fa;
+  flex-wrap: wrap;
+}
+
+.b-crear-receta {
+  background: #1290cb;
+  color: #ffffff;
+  margin: 20% 2% 0 40%;
+  padding: 15px;
+  transition: 1s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.b-agregar-paciente {
+  background: #1290cb;
+  color: #ffffff;
+  margin: 20% 40% 0 2%;
+  padding: 15px;
+  transition: 1s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.b-asignar-tutor {
+  background: #1290cb;
+  color: #ffffff;
+  margin: 5% 2% 0 40%;
+  padding: 15px;
+  transition: 1s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.opcion-mensaje { /* Alerta con mensaje y da opción en botón al respecto */
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+.b-tutor, .b-agregarpaciente {
+  background-color: #68c2dc;
+  color: #fff;
+  border: none;
+  padding: 5px 5px;
+  margin: 5px;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.b-tutor:hover, .b-agregarpaciente:hover {
+  background-color: #1290cb;
+}
+
+.mensaje {
+  padding-right: 15%;
+}
+
+.mensajes {
+  color: darkred;
+}
+
+.b-ver-recetas {
+  background: #1290cb;
+  color: #ffffff;
+  margin: 5% 40% 0 2%;
+  padding: 15px;
+  transition: 1s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.b-crear-receta:hover,
+.b-agregar-paciente:hover,
+.b-asignar-tutor:hover,
+.b-ver-recetas:hover {
+  background: #b9dcf0;
+}
+
+h4 {
+  font-weight: lighter;
+}
+
+.mensaje {
+  color: #1290cb;
+  font-weight: normal;
+}
+
+@media (max-width: 1200px) {
+  .home-medico {
+    width: 95%;
+  }
+  .b-crear-receta {
+    margin: 3% 10% 0 10%;
+    background: #1290cb;
+  }
+
+  .b-agregar-paciente {
+    margin: 3% 10% 0 10%;
+    background: #1290cb;
+  }
+
+  .b-asignar-tutor {
+    background: #1290cb;
+    margin: 3% 10% 0 10%;
+  }
+  .b-ver-recetas {
+    background: #1290cb;
+    margin: 3% 10% 0 10%;
+  }
+}
+
+.position {
+  align-items: flex-end;
+}
+
+.centro-salud {
+  padding-top: 15%;
+  font-size: 14px;
+}
+
+.cambiar-pass {
+  padding-top: 45%;
+}
+
+.linea {
+  color: #1290cb;
+
+}
+
+.linea:hover {
+  color: #FFF;
+}
+/*------------ Header usuario ------------ */
+
+.backgroundheader {
+  background: #68c2dc;
+  padding: 10px;
+  color: #ffffff;
+  box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.backgroundheader h4 {
+  font-weight: bold;
+}
+
+.section {
+  padding-top: 5.2rem;
+}
+
+/*------------ 3 Menú lateral ------------ */
+
+.header-usuario {
+  background: #68c2dc;
+  padding: 10px;
+  height: 83px;
+  color: #ffffff;
+  box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.h-usuario {
+  padding: 20px;
+  position: relative;
+  display: flex;
+}
+.h-nombre {
+  vertical-align: text-bottom;
+  align-items: center;
+  position: absolute;
+
+  background-color: cornflowerblue;
+
+  margin: 0 auto;
+}
+
+.h-nombre h4 {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+.h-logo {
+  align-items: center;
+  position: absolute;
+  margin: 0 auto;
+}
+
+.lateral {
+  padding-top: 20rem;
+}
+
+.home-medico {
+  background: #b9dcf0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 4px;
+}
+
+.b2-crear-receta,
+.b2-agregar-paciente,
+.b2-asignar-tutor,
+.b2-ver-recetas {
+  border: #ffffff 1.3px solid;
+  align-items: center;
+  margin: 4px 0 4px 8px;
+  padding: 26px 26px;
+  color: #1290cb;
+  transition: 1s;
+}
+
+.b2-crear-receta:hover,
+.b2-agregar-paciente:hover,
+.b2-asignar-tutor:hover,
+.b2-ver-recetas:hover {
+  background: #f2f5fa;
+}
+
+.home-opciones h4 {
+  font-family: "Roboto", sans-serif;
+}
+
+.opciones h4 {
+  font-family: "Roboto", sans-serif;
+  font-weight: bolder;
+}
+
+/*------------  Generales formulario ------------ */
+
+.fa {
+  margin-left: 2%;
+}
+
+.campo-buscar {
+  margin-left: 25%;
+  text-align: center;
+}
+
+.b-buscar {
+  border: none;
+  height: 35px;
+  width: 35px;
+  background-color: #1290cb;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  margin-bottom: 30px;
+  margin-left: 5px;
+  margin-right: 20%;
+}
+
+.input-8 { /* Dígito verificador */
+  color: #666;
+  border: none;
+  width: 8%;
+  height: 35px;
+  padding-left: 3px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+  justify-content: center;
+}
+
+input {
+  color: #666666;
+  border: none;
+  background: #ffffff;
+  height: 35px;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  border-bottom: 1px solid #666666;
+}
+
+input:disabled {
+  font-size: 0.9rem;
+}
+
+.casilla {
+  color: #666;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+.campo-casilla {
+  width: auto;
+  height: auto;
+  flex-wrap: nowrap;
+}
+
+.filtro {
+  border: none;
+  background: #1290cb;
+  padding-left: 10px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+
+.nombre-campo {
+  color: #666666;
+
+  vertical-align: middle;
+}
+/* Campo + otros elementos */
+.campo-compuesto {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.campo-doble {
+  width: 100%;
+}
+
+.campo-doble input {
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.label-doble {
+  flex-wrap: nowrap;
+}
+
+label {
+  color: #666;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/*input[type=text], select, textarea {
+  width: 80%;
+  padding: 12px;
+  resize: vertical;
+  
+}*/
+
+input[type="submit"] {
+  padding: 12px 20px;
+  cursor: pointer;
+  float: right;
+  color: #666666;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
+  .contenido {
+    flex-direction: column;
+  }
+}
+
+/*------------ 5 Crear receta ------------ */
+
+#main-container {
+  margin-bottom: 2rem;
+  font-weight: lighter;
+  display: inline-block;
+}
+
+table {
+  background-color: #fff;
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+  font-weight: lighter;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  padding: 6px 0;
+  font-weight: lighter;
+}
+
+thead {
+  background-color: #666;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  /* celda por medio */
+  background-color: #b9dcf0;
+  color: #000;
+}
+
+tr:hover td {
+  background-color: #a5a5a5;
+  color: #fff;
+  font-weight: normal;
+}
+
+.ancho-100 {
+  width: 100%;
+}
+.ancho-70 {
+  width: 70%;
+}
+
+.ancho-48 {
+  width: 48%;
+}
+
+/*------------ Agregar paciente + formularios  ------------ */
+
+.formulario-paciente,
+.formulario-tutor,
+.formulario-receta,
+.formulario-receta2,
+.formulario-ver-receta,
+.formulario-buscar {
+  width: 80%;
+  padding-left: 14%;
+}
+.formulario-buscar {
+  flex-wrap: nowrap;
+}
+
+.contenedor-inputs {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+}
+
+.buscar {
+  justify-content: center;
+}
+
+.input-100 {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+.input-100-s {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 30px;
+}
+.input-90 {
+  width: 90%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+
+.input-80 {
+  color: #666;
+  border: none;
+  width: 80%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+.input-80-s {
+  color: #666;
+  border: none;
+  width: 80%;
+  height: 35px;
+  margin-bottom: 30px;
+}
+
+.input-60 {
+  color: #666;
+  border: none;
+  width: 60%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+
+.input-60-s {
+  color: #666;
+  border: none;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.input-48 {
+  color: #666;
+  border: none;
+  width: 48%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+
+.input-48-s {
+  color: #666;
+  border: none;
+  width: 48%;
+  height: 35px;
+  margin-bottom: 30px;
+}
+
+.input-8 {
+  color: #666;
+  border: none;
+  width: 7%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+  justify-content: center;
+}
+
+.rut-v {
+     flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .rut-v {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .input-48, .input-48-s {
+    width: 100%;
+  }
+}
+
+.input-40 {
+  color: #666;
+  border: none;
+  width: 40%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+}
+
+.input-30 {
+  color: #666;
+  border: none;
+  width: 30%;
+  height: 35px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #666666;
+  justify-content: space-between;
+}
+
+.input-30-s {
+  color: #666;
+  border: none;
+  width: 30%;
+  height: 35px;
+  margin-bottom: 30px;
+}
+
+input:disabled {
+  background-color: #f2f5fa;
+  color: #666;
+}
+
+.texto-area {
+  color: #666;
+  border: none;
+  max-width: 100%;
+  width: 48%;
+  border-bottom: 1px solid #666666;
+}
+
+.campo {
+  width: 100%;
+  text-align: left;
+}
+
+
+.area-receta2 {
+  width: 700px;
+  text-align: left;
+
+}
+
+.receta2 {
+  
+max-width: 80%;
+}

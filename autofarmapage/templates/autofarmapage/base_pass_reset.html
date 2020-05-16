@@ -1,0 +1,53 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Enlace flexbox-->
+    <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}">
+    <!--Enlace css-->
+    <link rel="stylesheet" href="{% static 'css/estilosindex.css' %}">
+
+    <!--Enlaces fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    
+    <title>AutoFarma {% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-lg-6 star-lg">
+                <div class="sideleft">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12 center-xs">
+                            <div class="contenedorimagen">
+                                <img src="{% static 'imagenes/medicamentos.png' %}" 
+                                alt="imagenizquierda" width="500" height="350"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xs-12  col-lg-6 end-lg">
+                <div class="box">
+                    <div class="sectionlogeo">
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-12 center-xs">
+                                <img src="{% static 'imagenes/LOGO_azul.png' %}" 
+                                        alt="imagentitulo" height="70"
+                                        width="400">
+                            </div>
+                        </div>
+                    </div>
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

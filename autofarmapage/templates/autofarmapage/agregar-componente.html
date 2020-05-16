@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Enlace css-->
+    <link rel="stylesheet"  href="{% static 'css/estiloBaseAdmi.css' %}">
+    <!--Enlace flexbox-->
+    <link rel="stylesheet"  href="{% static 'css/flexboxgrid.css' %}">
+
+    <!--  Enlace a fuentes-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+
+    <title>AutoFarma - Agregar Componente</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="row backgroundheader">
+            <div class="col-xs-12 col-lg-12">
+                <div class="header">
+                    <div class="col-xs-12 end-xs">
+                        <a href="{% url 'homefarma' %}"><img src="{% static 'imagenes/LOGO_blanco.png' %}" alt="Logopaginablanco" height="40" width="200"> </a>
+                        <p>{{ user.rut.id_centro.nombre_centro }}</p>
+                        <div class="col-xs-12 star-xs">
+                            <h4>{{ user.rut.nombres|upper }} {{ user.rut.apellido_paterno|upper }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="row section">
+            <div class="col-xs-12 col-md-2 col-lg-2 star-large backgroundleftside">
+                <div class="sideleft">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12 center-lg">
+                            <div class="button_usuario">
+                                <a href="{% url 'agregar-medicamento' %}"><img src="{% static 'imagenes/icono_agregar_medicamento_blue.png' %}" alt="agregarmedicamentos"  height="60" width="60"></a>
+                                <h4>Crear Medicamento</h4>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-xs-12 col-lg-12 center-lg">
+                            <div class="button_listarusuarios">
+                                <a href="{% url 'listar-medicamento' %}"><img src="{% static 'imagenes/icono_listar_medicamentos_blue.png' %}" alt="lstarMedicamentos"  height="60" width="60"></a>
+                                <h4>Listar Medicamentos</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-lg-12 center-lg">
+                            <div class="button_listarinformes">
+                                <a href="#"><img src="{% static 'imagenes/listarInformes.png' %}" alt="Informes"  height="60" width="60"></a>
+                                <h4>Informes</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-10 col-lg-10 center-xs backgroundrightside">
+                <div class="sideright">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                            <h4 id="encabezadoform">COMPONENTES {{ medicamento.nombre_medicamento|upper }}</h4>
+                        </div>
+                    </div>
+
+                    <form method="POST" class="formulariologeo">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-xs-12 center-xs">
+                                <input class="intputs" id="nombre_componente" type="text" name="nombre_componente" required placeholder="Nombre del Componente">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 center-xs">
+                                <input class="intputs" id="medida_componente" type="number" name="medida_componente" required placeholder="Medida">
+                                
+                                <select required name="id_medida_componente" id="id_medida_componente">
+                                    {% for medida in medidaComponente %}
+                                    <option value="{{ medida.id_medida }}">{{ medida.medida }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 center-xs">
+                                <select name="id_tipo_componente" id="id_tipo_componente">
+                                    {% for componente in tipoComponente %}
+                                    <option value="{{ componente.id_tipo_componente }}">{{ componente.nombre_tipo_comp }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-6 center-xs end-lg">
+                                <button class="buttonformuser">AÑADIR</button>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-6 center-xs start-lg">
+                                <button class="buttoncancelar"><a href="{% url 'exito-crear-medicamento' %}">TERMINAR</a></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% if componentes %}
+                    <div>
+                        <h4 id="encabezadoform">COMPONENTES AÑADIDOS:</h4>
+                    </div>
+                    {% endif %}
+
+                    <div class="row center-xs">
+                        {% if componentes %}
+                        {% for componentes in componentes %}
+                        <div class="box">
+                        <div class="box_componentes">
+                            <h5>{{ componentes.nombre_componente | upper }}</h5>
+                            <p>{{ componentes.medida_componente }} {{ componentes.id_medida.medida }}</p>
+                            <p>{{ componentes.id_tipo_componente.nombre_tipo_comp | upper }}</p>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id_componente" value="{{ componentes.id_componente }}"/>
+                                <button type="submit"
+                                    onclick="return confirm('¿Desea eliminar el componente {{ componentes.nombre_componente }}?');">BORRAR</button>
+                            </form>
+                        </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

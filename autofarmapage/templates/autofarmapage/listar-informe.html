@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--Enlace css-->
+        <link rel="stylesheet" href="{% static 'css/estiloListarInforme.css' %}">
+        <!--Enlace flexbox-->
+        <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}">
+
+        <!--  Enlace a fuentes-->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap"
+            rel="stylesheet">
+
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap"
+            rel="stylesheet">
+        <title>Listar Informes</title>
+
+
+    </head>
+    
+    <body>
+        <div class="container">
+            <header class="row backgroundheader">
+                <div class="col-xs-12 col-lg-12" >
+                   <div class="header"> 
+                       <div class="col-xs-12 end-xs">
+                            <a href="{% url 'homeadmi' %}"><img src="{% static 'imagenes/LOGO_blanco.png' %}" alt="Logopaginablanco" height="40" width="200"> </a>
+                            <p>{{ user.rut.id_centro.nombre_centro }}</p>
+                            <div class="col-xs-12 star-xs">
+                                <h4>{{ user.rut.nombres|upper }} {{ user.rut.apellido_paterno|upper }}</h4>
+                            </div>
+                       </div>
+                   </div>
+                </div>
+            </header>
+
+            <section class="row section">
+                <div class="col-xs-12 col-md-2 col-lg-2 star-large backgroundleftside">
+                    <div class="sideleft">
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-12 center-lg">
+                                <div class="button_usuario">
+                                    <a href="{% url 'agregar-usuario' %}"><img
+                                            src="{% static 'imagenes/agregarUsuario.png' %}"
+                                            alt="agregar_Usuario" height="60"
+                                            width="60"></a>
+                                    <h4>Crear Usuario</h4>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-12 center-lg">
+                                <div class="button_listarusuarios">
+                                    <a href="{% url 'listar-usuario' %}"><img
+                                            src="{% static 'imagenes/listarusuarios.png' %}"
+                                            alt="lstar_usuario" height="60"
+                                            width="60"></a>
+                                    <h4>Listar Usuarios</h4>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-12 center-lg">
+                                <div class="button_listarinformes">
+                                    <a href="{% url 'listar-informe' %}"><img
+                                            src="{% static 'imagenes/listarInformes.png' %}"
+                                            alt="listar_informes" height="60"
+                                            width="60"></a>
+                                    <h4>Listar Informes</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- seccion lista informes-->
+
+                <div class="col-xs-12 col-md-10 col-lg-10 center-xs backgroundrightside">
+                    <div class="sideright">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                <h4 id="encabezadoform">LISTADO DE INFORMES</h4>
+                            </div>
+                        </div>
+
+                        <!--CAMPO BUSCAR-->
+                        <form id="formulario-buscar-informe" method="POST"
+                            action="#" class="formulariobuscarinforme">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6 col-lg-6 end-xs">
+                                    <select required name="Región"
+                                        id="regiones">
+                                        <option></option>
+                                        <option>Stock </option>
+                                        <option>Medicamentos reservados</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-xs-6 col-md-6 col-lg-6 start-xs">
+                                    <button class="buttonBuscar"><img src="{% static 'imagenes/search.png' %}"
+                                            alt="search-listar" height="30"
+                                            width="30"></button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+                                <form id="formulario-card-informe" method="POST"
+                                    action="#" class="formularioCardInforme">
+                                    {% if informe %}
+                                    {% for i in informe%}
+                                    <div class="backgroundCard">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-6 col-lg-6 start-xs">
+                                                <h5>NOMBRE INFORME:</h5>
+                                                <input class="inputCard"
+                                                    type="text" name="name"
+                                                    required
+                                                    placeholder="Nombre">
+                                            </div>
+
+                                            <div class="col-xs-6 col-md-6
+                                                col-lg-6 end-xs">
+                                                <button class="buttonVer">VER
+                                                    INFORME</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor%}
+                                    {%else%}
+                                    <h2>No existen datos :(</h2>
+                                    {%endif%}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

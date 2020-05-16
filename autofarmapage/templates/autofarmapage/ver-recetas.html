@@ -1,0 +1,89 @@
+{% extends 'autofarmapage/base_medico.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<!-- CONTENIDO DE LA HTML-->
+
+
+<div class="contenido">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+            <h4 id="encabezadoform">Listado de recetas</h4>
+        </div>
+    </div>
+
+    <!--CAMPO BUSCAR-->
+    <form id="formulario-ver-receta" method="POST" action="#" class="formulario-ver-receta">
+        <div class="contenedor-inputs">
+            <div class="ancho-48">
+                <input class="campo-buscar" type="text" name="name" required placeholder="Buscar por RUT paciente" />
+                <button class="b-buscar">
+                    <i class="fa fa-search fa-lg" style="font-size: 20px; color: #fff;"></i>
+                </button>
+            </div>
+
+
+            <div class="ancho-100" id="main-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>RUT paciente</th>
+                            <th>Nombre paciente</th>
+                            <th>Fecha emisión</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-x">
+                                <i class="fa fa-eye fa-lg"> </i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-x">
+                                <i class="fa fa-eye fa-lg"> </i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-x">
+                                <i class="fa fa-eye fa-lg"> </i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn-x">
+                                <i class="fa fa-eye fa-lg"> </i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+
+
+{% endblock %}
