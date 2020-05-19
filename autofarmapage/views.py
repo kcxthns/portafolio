@@ -67,64 +67,63 @@ def agregarusuario(request):
 
     if request.method == 'POST':
         rut = request.POST['rut']
-        dv = request.POST['dv']
-        validador = Validador()
-        if validador.validarRut(rut, dv) == False:
-            messages.error(request, "El rut " + rut +
-                           "- " + dv + " no es válido")
-        else:
-            nombres = request.POST['nombres']
-            app_paterno = request.POST['apellido_paterno']
-            app_materno = request.POST['apellido_materno']
-            telefono = int(request.POST['telefono'])
-            email = request.POST['correo_electronico']
-            direccion = request.POST['direccion']
-            comuna = int(request.user.rut.id_comuna.id_comuna)
-            centro_s = int(request.user.rut.id_centro.id_centro)
-            id_tipo_empleado = int(request.POST['id_tipo_empleado'])
-            rut_tutor = None
+        #dv = request.POST['dv']
+        rut = rut.replace('.', '')
+        rut = rut.replace('-', '')
+        rut = rut[0 : len(rut) - 1]
+        nombres = request.POST['nombres']
+        app_paterno = request.POST['apellido_paterno']
+        app_materno = request.POST['apellido_materno']
+        telefono = int(request.POST['telefono'])
+        email = request.POST['correo_electronico']
+        direccion = request.POST['direccion']
+        comuna = int(request.user.rut.id_comuna.id_comuna)
+        centro_s = int(request.user.rut.id_centro.id_centro)
+        id_tipo_empleado = int(request.POST['id_tipo_empleado'])
+        rut_tutor = None
 
+        print(rut)
         # conexión a la bd
-            bd = ConexionBD()
-            conn = bd.conectar()
-            cursor = conn.cursor()
-            realizado = cursor.var(int)
+        bd = ConexionBD()
+        conn = bd.conectar()
+        cursor = conn.cursor()
+        realizado = cursor.var(int)
 
         # Llamado al procedimiento almacenado para crear persona (no crea usuario)
-            cursor.callproc('pkg_crear_usuario.sp_crear_persona', [
-                            rut, nombres, app_paterno, app_materno, telefono, email, direccion, comuna, centro_s, rut_tutor, realizado])
-            print(realizado.getvalue())
+        cursor.callproc('pkg_crear_usuario.sp_crear_persona', [
+                        rut, nombres, app_paterno, app_materno, telefono, email, direccion, comuna, centro_s, rut_tutor, realizado])
+        print(realizado.getvalue())
 
-            if int(realizado.getvalue()) == 1:
-                # mensaje exito
-                #messages.success(request, 'Datos Agregados al Sistema.')
-                usuario = Usuario.objects.create_user(rut, id_tipo_empleado)
+        if int(realizado.getvalue()) == 1:
+            # mensaje exito
+            #messages.success(request, 'Datos Agregados al Sistema.')
+            usuario = Usuario.objects.create_user(rut, id_tipo_empleado)
 
             # inserta el rut en la tabla de medicos o de colaboradores de farmacia
-                if id_tipo_empleado == 1:
-                    cursor.callproc(
-                        'pkg_crear_usuario.sp_ingresar_medico', [rut])
-                if id_tipo_empleado == 2:
-                    cursor.callproc(
-                        'pkg_crear_usuario.sp_ingresar_col_farmacia', [rut])
+            if id_tipo_empleado == 1:
+                cursor.callproc(
+                    'pkg_crear_usuario.sp_ingresar_medico', [rut])
+            if id_tipo_empleado == 2:
+                cursor.callproc(
+                    'pkg_crear_usuario.sp_ingresar_col_farmacia', [rut])
 
             #new_usuario = Usuario.objects.filter(rut=rut)
-                mensaje_email = 'Tu usuario es ' + \
-                    usuario.rut.rut + ' .Tu contraseña es ' + rut[0:4]
+            mensaje_email = 'Tu usuario es ' + \
+                usuario.rut.rut + ' .Tu contraseña es ' + rut[0:4]
 
             # envío de mail con el usuario y la contraseña
-                send_mail(
-                    'Bienvenido a Autofarma.',
-                    mensaje_email,
-                    'torpedo.page@gmail.com',
-                    [email],
-                    fail_silently=False
+            send_mail(
+                'Bienvenido a Autofarma.',
+                mensaje_email,
+                'torpedo.page@gmail.com',
+                [email],
+                fail_silently=False
                 )
-                return redirect('exito-crear-usuario')
-            elif int(realizado.getvalue()) == 0:
-                # mesaje error
-                messages.error(
-                    request, 'Se ha producido un problema y los datos no han sido almacenados. Por Favor intente nuevamente.')
+            return redirect('exito-crear-usuario')
+        elif int(realizado.getvalue()) == 0:
+            # mesaje error
+            messages.error(
+                request, 'Se ha producido un problema y los datos no han sido almacenados. Por Favor intente nuevamente.')
 
     return render(request, 'autofarmapage/agregar-usuario.html', {'regiones': regiones, 'ciudades': ciudades, 'centro_salud': centro_salud, 'tipo_empleado': tipo_empleado})
 
