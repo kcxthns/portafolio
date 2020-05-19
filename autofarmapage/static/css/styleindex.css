@@ -134,11 +134,11 @@ select p {
     min-height: 100vh;
     color: #1290cb;
     align-items: flex-start;
-    background: #b9dcf0;
 }
 
 .banner-area .banner-img {
-    background-image: url(/autofarmapage/static/imagenes/banner-medicamentos_cover.svg);
+    background-color: transparent; 
+    background-image: url("../imagenes/banner-medicamentos_cover.svg");
     background-repeat:no-repeat;
     -webkit-background-size:cover;
     -moz-background-size:cover;
@@ -504,7 +504,6 @@ ul.movil-content {
         font-size: 14px;
     }
 }
-
 
 /* ----------- Footer-----------  */
 
