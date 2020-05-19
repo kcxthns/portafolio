@@ -145,8 +145,7 @@ def listarusuario(request):
         criterio_busqueda = request.GET.get('q')
         submitBtn = request.GET.get('submit')
         if criterio_busqueda is not None:
-            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(
-                rut=criterio_busqueda).order_by('rut')
+            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(rut=criterio_busqueda).order_by('rut')
             paginador = Paginator(person, 20)
             pagina = request.GET.get('page')
             person = paginador.get_page(pagina)
@@ -157,8 +156,7 @@ def listarusuario(request):
 
             if 'page' in parametros:
                 del parametros['page']
-
-            datos['parametros'] = parametros
+            data5['parametros'] = parametros
             return render(request, 'autofarmapage/listar-usuario.html', data5)
 
     if request.method == 'POST':
