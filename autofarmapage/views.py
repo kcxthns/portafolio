@@ -707,7 +707,7 @@ def agregarTutor(request, rut):
 
 
 def verRecetas(request):
-    receta = Receta.objects.all()
+    receta = Receta.objects.all().order_by('fecha_receta')
     data = {'receta':receta}
     if request.method == 'GET':
         entrada = request.GET.get('q')
