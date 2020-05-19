@@ -719,7 +719,7 @@ def verRecetas(request):
     return render(request, 'autofarmapage/ver-recetas.html', data) 
 
 def verReceta2(request, id_receta):
-    return render(request, 'autofarmapage/ver-receta2.html')
+    return render(request, 'autofarmapage/ver-receta2.html',{})
 
 # este es la forma con el form de django en el html la vista
 # de html que deben usar es la llamada editarpage
