@@ -402,7 +402,7 @@ def listarMedicamento(request):
             stock = paginador.get_page(pagina)
             datos = {
                 'stock': stock,
-                'caducados': caducados
+                'caducados': caducados,
             }
             parametros = request.GET.copy()
 
@@ -436,9 +436,7 @@ def listarMedicamento(request):
             elif resultado == 0:
                 messages.error(
                     request, 'Se ha producido un error, por favor intentalo nuevamente.')
-
         else:
-
             cod_medicamento = request.POST['codigo_medicamento']
             # print(cod_medicamento)
             stock_add = request.POST['stock_aumentar']
@@ -463,7 +461,7 @@ def listarMedicamento(request):
         stock = paginador.get_page(pagina)
         datos = {
             'stock': stock,
-            'caducados': caducados
+            'caducados': caducados,
         }
         return render(request, 'autofarmapage/listar-medicamento.html', datos)
 
@@ -473,7 +471,7 @@ def listarMedicamento(request):
 
     datos = {
         'medicamentos': medicamentos,
-        'stock': stock
+        'stock': stock,
     }
     parametros = request.GET.copy()
 

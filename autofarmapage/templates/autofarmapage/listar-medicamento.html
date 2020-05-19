@@ -166,7 +166,9 @@
                                                 class="inputCard"
                                                 id="onInput"
                                                 name="stock_aumentar"
-                                               required>
+                                               required
+                                               min="1"
+                                               pattern="^[0-9]+">
                                             <button class="btnCardMed">AUMENTAR</button>
                                         </div>
                                     </div>
@@ -181,7 +183,9 @@
                                                 class="inputCard"
                                                 id="onInputCaducar"
                                                 name="stock_caducar"
-                                               required>
+                                               required
+                                               min="1"
+                                               pattern="^[0-9]+">
                                             <button class="btnCardMed" name="caducar_btn" value="caducar">CADUCAR</button>
                                         </div>
                                     </div>
@@ -228,6 +232,5 @@
             });
         });
     </script>
-    
 </body>
 </html>
