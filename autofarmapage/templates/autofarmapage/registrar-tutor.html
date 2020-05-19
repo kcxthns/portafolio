@@ -31,8 +31,8 @@
       <!-- RUT -->
 
       <div class="input-48-s rut-v">
-        <input class="input-90" id="rut" type="text" name="rut" required placeholder="RUT" maxlength="8" />
-        <input class=" input-8" id="dv" type="text" name="dv" required maxlength="1" placeholder="K">
+        <input class="input-90" id="rut" type="text" name="rut" required placeholder="RUT" maxlength="12" oninput="checkRut(this)" onkeypress="return isNUmber(event)"/>
+        <!--<input class=" input-8" id="dv" type="text" name="dv" required maxlength="1" placeholder="K">-->
       </div>
       <!-- Teléfono -->
       <input class="input-48" id="telefono" type="tel" pattern="[0-9]{9}" name="telefono" required
