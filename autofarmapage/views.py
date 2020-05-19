@@ -7,7 +7,7 @@ from .models import Region, Comuna, CentroSalud, TipoEmpleado, Persona
 from .connbd import ConexionBD
 import cx_Oracle
 from autofarmapage.forms import EditarForm
-from autofarmapage.models import Caducado, Componente, Medicamento, MedidaComponente, Receta, RegistroInformes, StockMedicamento, TipoComponente, TipoMedicamento, TipoTratamiento, TutorPaciente, Usuario
+from autofarmapage.models import Caducado, Componente, Medicamento, MedidaComponente, Receta, RegistroInformes, StockMedicamento, TipoComponente, TipoMedicamento, TipoTratamiento, TutorPaciente, Usuario, DetalleReceta
 from django.contrib import messages
 from autofarmapage.managers import UserManager
 from django.core.mail import send_mail
@@ -144,8 +144,7 @@ def listarusuario(request):
         criterio_busqueda = request.GET.get('q')
         submitBtn = request.GET.get('submit')
         if criterio_busqueda is not None:
-            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(
-                rut=criterio_busqueda).order_by('rut')
+            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(rut=criterio_busqueda).order_by('rut')
             paginador = Paginator(person, 20)
             pagina = request.GET.get('page')
             person = paginador.get_page(pagina)
@@ -156,8 +155,7 @@ def listarusuario(request):
 
             if 'page' in parametros:
                 del parametros['page']
-
-            datos['parametros'] = parametros
+            data5['parametros'] = parametros
             return render(request, 'autofarmapage/listar-usuario.html', data5)
 
     if request.method == 'POST':
@@ -219,7 +217,6 @@ def editarPersona(request, rut):
         direccion = request.POST['direccion']
         comuna = int(request.POST['id_comuna'])
         centro_s = int(request.POST['id_centro'])
-        rut_tutor = request.POST['rut_tutor']
         # lo hice para probar :(
         sql = ('update persona '
                'set nombres = :nombres '
@@ -237,7 +234,7 @@ def editarPersona(request, rut):
                     # ejecutar el procedimiento
                     realizado = cursor.var(int)
                     cursor.callproc('pkg_administrar_usuario.sp_editar_persona', [
-                                    rut, nombres, app_paterno, app_materno, telefono, email, direccion, comuna, centro_s, rut_tutor, realizado])
+                                    rut, nombres, app_paterno, app_materno, telefono, email, direccion, comuna, centro_s,realizado])
 
                     if int(realizado.getvalue()) == 1:
                         return redirect('exito-modificar-usuario')
@@ -587,10 +584,12 @@ def crearreceta2(request, id_receta):
     recetapk = Receta.objects.get(id_receta=id_receta)
     tratamiento = TipoTratamiento.objects.all()
     remedios = None
+    detallereceta = DetalleReceta.objects.filter(id_receta=id_receta)
     data5 = {
         'recetapk': recetapk,
         'tratamiento': tratamiento,
-        'remedios': remedios
+        'remedios': remedios,
+        'detallereceta':detallereceta
     }
     if request.method == 'GET':
         campo = request.GET.get('q')
@@ -601,7 +600,8 @@ def crearreceta2(request, id_receta):
             data5 = {
                 'recetapk': recetapk,
                 'tratamiento': tratamiento,
-                'remedios': remedios
+                'remedios': remedios,
+                'detallereceta':detallereceta
             }
             return render(request, 'autofarmapage/crear-receta2.html', data5)
     elif request.method == 'POST':
@@ -696,8 +696,7 @@ def agregarTutor(request, rut):
         con = bd.conectar()
         cursor = con.cursor()
         realizado = cursor.var(int)
-        cursor.callproc('pkg_crear_usuario.sp_crear_tutor', [
-                        rutdeltutor, paciente.rut, realizado])
+        cursor.callproc('pkg_crear_usuario.sp_crear_tutor', [rutdeltutor, paciente.rut, realizado])
         print(realizado.getvalue())
         if realizado.getvalue() == 1:
             return redirect('crear-receta')
