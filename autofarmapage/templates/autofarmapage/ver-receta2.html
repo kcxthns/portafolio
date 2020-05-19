@@ -1,0 +1,79 @@
+{% extends 'autofarmapage/base_medico.html' %}
+{% load static %}
+{% block content %}
+<div class="contenido">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12 center-xs">
+            <h4 id="encabezadoform">Información receta: {{receta.id_receta}}</h4>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-xs-6 col-md-6 col-lg-6 end-xs">
+            <h4>Fecha:</h4>
+        </div>
+        <div class="col-xs-6 col-md-6 col-lg-6 start-xs">
+            <h3>{{receta.fecha_receta}}</h3>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+   <div class="row">
+       <div class="col-xs-12 col-md-6 col-lg-6 center-xs">
+           <h4>Nombre paciente:</h4>
+           <h3>{{receta.rut_paciente.nombres}} {{receta.rut_paciente.apellido_paterno}}</h3>
+           <br>
+           <h4>Nombre medico:</h4>
+           <h3>{{receta.rut_medico.rut.nombres}} {{receta.rut_medico.rut.apellido_paterno}}</h3>
+       </div>
+       <div class="col-xs-12 col-md-6 col-lg-6 center-xs">
+        <h4>rut paciente:</h4>
+        <h3>{{receta.rut_paciente.rut}}</h3>
+        <br>
+        <h4>rut medico:</h4>
+        <h3>{{receta.rut_medico.rut.rut}}</h3>
+       </div>
+   </div>
+   <br>
+   <hr>
+   <br>
+   <div class="row">
+       <div class="col-xs-12">
+           <h4>Detalle receta</h4>
+       </div>
+   </div>
+   <br>
+   <div class="ancho-100" id="main-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre medicamento</th>
+          <th>Duración</th>
+          <th>Dosis diaria</th>
+          <th>Posologia</th>
+          <!--<th>Eliminar</th>-->
+        </tr>
+      </thead>
+      {%if detallereceta%}
+      {%for j in detallereceta%}
+      <tr class="listarAgregados">
+        <td>{{j.codigo.nombre_medicamento}}</td>
+        <td>{{j.duracion_tratamiento}} - dias</td>
+        <td>{{j.dosis_diaria}} - Por día</td>
+        <td>{{j.posologia}}</td>
+       <!-- <td>
+          <button class="btn-x" type="button" id="add">
+            <i class="fa fa-plus fa-lg"> </i>
+          </button>
+        </td>-->
+      </tr>
+      {%endfor%}
+      {%endif%}
+     
+    
+    </table>
+  </div>
+
+</div>
+{% endblock %}
