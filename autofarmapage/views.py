@@ -138,8 +138,7 @@ def guardadoTutorExito(request):
 
 
 def listarusuario(request):
-    person = Persona.objects.filter(
-        id_centro=request.user.rut.id_centro).order_by('rut')
+    person = Persona.objects.filter(id_centro=request.user.rut.id_centro).order_by('rut')
 
     if request.method == 'GET':
         criterio_busqueda = request.GET.get('q')
@@ -708,7 +707,16 @@ def agregarTutor(request, rut):
 
 
 def verRecetas(request):
-    return render(request, 'autofarmapage/ver-recetas.html', {})
+    receta = Receta.objects.all()
+    data = {'receta':receta}
+    if request.method == 'GET':
+        entrada = request.GET.get('q')
+        btn = request.GET.get('submit')
+        if entrada is not None:
+            receta = Receta.objects.filter(rut_paciente=entrada)
+            data={'receta':receta}
+            return render(request, 'autofarmapage/ver-recetas.html', data)
+    return render(request, 'autofarmapage/ver-recetas.html', data) 
 
 # este es la forma con el form de django en el html la vista
 # de html que deben usar es la llamada editarpage
