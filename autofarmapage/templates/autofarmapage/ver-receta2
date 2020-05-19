@@ -1,0 +1,5 @@
+{% extends 'autofarmapage/base_medico.html' %}
+{% load static %}
+{% block content %}
+
+{% endblock %}
