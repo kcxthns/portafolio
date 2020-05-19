@@ -144,7 +144,7 @@ def listarusuario(request):
         criterio_busqueda = request.GET.get('q')
         submitBtn = request.GET.get('submit')
         if criterio_busqueda is not None:
-            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(rut=criterio_busqueda).order_by('rut')
+            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(rut=criterio_busqueda)
             paginador = Paginator(person, 20)
             pagina = request.GET.get('page')
             person = paginador.get_page(pagina)
