@@ -15,8 +15,6 @@
     
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
-    
-    <script src="{% static 'js/validarRut.js' %}"></script>
 
     <title>AutoFarma</title>
 </head>
@@ -100,21 +98,8 @@
                         <!--rut-->
                        <div class="row">
                             <div class="col-xs-12 center xs">
-                                <input class="intputs" 
-                                    id="rut" 
-                                    type="text" 
-                                    name="rut" 
-                                    required 
-                                    placeholder="RUT" 
-                                    maxlength="12" 
-                                    oninput="checkRut(this)"
-                                    onkeypress="return isNumber(event)">
-                                <!--<input class="inputDV" id="dv" type="text" name="dv" required maxlength="1" placeholder="K">-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 center-xs">
-                                
+                                <input class="inputRut" id="rut" type="text" name="rut" required placeholder="RUT" maxlength="8">
+                                <input class="inputDV" id="dv" type="text" name="dv" required maxlength="1" placeholder="K">
                             </div>
                         </div>
                     
@@ -235,10 +220,25 @@
                                     </div>
 
                             </div>
+
+
                   </form>
+
+
               </div>
           </div>
+
+
         </section>
+
+
+
+
+
+
+
+
     </div>
+    
 </body>
 </html>

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--Enlace flexbox-->
+        <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}">
+        <!--Enlace css-->
+        <link rel="stylesheet" href="{% static 'css/estilosindex.css' %}">
+        <!--Enlaces fonts-->
+        <link
+            href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap"
+            rel="stylesheet">
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap"
+            rel="stylesheet">
+
+        <title>AutoFarma</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-6 star-lg">
+                    <div class="sideleft">
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-12 center-xs">
+
+                                <div class="contenedorimagen">
+                                    <img src="{% static 'imagenes/medicamentos.png' %}"
+                                        alt="imagenizquierda" width="500"
+                                        height="350">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-lg-6 end-lg">
+                    <div class="box">
+                        <div class="sectionlogeo">
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-12 center-xs">
+                                    <img src="{% static 'imagenes/LOGO_azul.png' %}" 
+                                        alt="imagentitulo" height="70"
+                                        width="400">
+                                    <h2 id="textoencabezado">
+                                        Ingrese datos para iniciar sesión
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <form id="formulario-logeo" method="POST"
+                                class="formulariologeo">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-12 center-xs">
+                                        <input id='rut' class="intputs"
+                                            type="text" name="rut" required
+                                            placeholder="Usuario">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-12 center-xs">
+                                        <input class="intputs" type="password"
+                                            id="password" name="password"
+                                            minlength="4"
+                                            placeholder="Contraseña">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-12 center-xs"
+                                        id="enlacecontraseña">
+                                        <!--<a class="enlace" href="#"
+                                            target="_blank">
+                                            ¿Olvidaste tu contraseña?
+                                        </a>-->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-12 center-xs">
+                                        <button class="buttonLogeo">INGRESAR</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="center-xs mensajes">
+                                {% if messages %}
+                                <ul>
+                                    {% for message in messages %} 
+                                    <li class="{{ message.tags }}">{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

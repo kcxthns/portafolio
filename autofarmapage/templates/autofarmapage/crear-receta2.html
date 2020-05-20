@@ -33,7 +33,8 @@
             </a>
           </div>
           <div class="col-xs-12 star-xs">
-            <h4>Nombre del Médico</h4>
+            <p>{{ user.rut.id_centro.nombre_centro }}</p>
+            <h4>Nombre del Médico: {{user.rut.nombres}} {{user.rut.apellido_paterno}}</h4>
           </div>
         </div>
       </div>
@@ -69,8 +70,8 @@
             </div>
             <div class="col-xs-12 col-lg-12 center-lg">
               <div class="b2-ver-recetas">
-                <a href="{% url 'listar-informe' %}"><img src="{% static 'imagenes/ver-recetas2.png' %}"
-                    alt="ver recetas" height="60" width="60" /></a>
+                <a href="{% url 'ver-recetas' %}"><img src="{% static 'imagenes/ver-recetas2.png' %}" alt="ver recetas"
+                    height="60" width="60" /></a>
                 <h4>Ver recetas</h4>
               </div>
             </div>
@@ -81,154 +82,173 @@
 
       <!--FORMULARIO CREAR RECETA -->
       <div class="col-xs-12 col-md-12 col-lg-10 center-xs backgroundrightside">
-        <div class="sideright">
+        <div class="contenido">
           <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12 center xs">
               <h4 id="encabezadoform" name="idreceta" value="{{recetapk.id_receta}}">Información de la receta:
                 {{recetapk.id_receta}}</h4>
-            </div>
-          </div>
-         <div class="row">
-            <!--Espacio detalle receta-->
-          <div class="col-xs-12 col-md-12 col-lg-5 start-lg">
-          
-            <div class="container">
-              <form class="area-receta2 " method="POST">
+
+              <form method="GET" class="formulario-receta2">
                 {% csrf_token %}
-                <div class="receta2">
-                  <label>Código medicamento:</label>
-                  <input class="input-48" id="medicamentoadd" name="medicamentoadd">
+                <!--Buscar -->
+                <div class="contenedor-inputs">
+                  <input class="ancho-48 campo-buscar" type="search" name="q" value="{{ request.GET.q }}" required
+                    placeholder="Buscar nombre fármaco " />
+                  <button class="b-buscar" type="submit" name="submit" value="Search">
+                    <i class="fa fa-search fa-lg" style="font-size: 20px; color: #fff;"></i>
+                  </button>
                 </div>
-                <div class="receta2">
-                  <label>Tipo de tratamiento:</label>
-                  <select class="input-48" required name="tipo_tratamiento">
-                    {% if tratamiento%}
-                    {% for i in tratamiento%}
-                    <option value="{{i.id_tipo_tratamiento}}">{{i.tipo_tratamiento}}</option>
+                <!-- Tabla resultado busqueda -->
+                <div class="ancho-100" id="main-container">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Nombre medicamento</th>
+                        <th>Tipo</th>
+                        <th>Stock</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    {% if remedios%}
+                    {% for n in remedios%}
+                    <tr class="listar" id="{{n.codigo}}">
+                      <td>{{n.nombre_medicamento}}</td>
+                      <td>{{n.id_tipo_med.nombre_tipo_med}}</td>
+                      <td></td>
+                      <td>
+                        <button class="btn-x" type="button" id="add">
+                          <i class="fa fa-plus fa-lg"> </i>
+                        </button>
+                      </td>
+                    </tr>
                     {% endfor %}
                     {%endif%}
-                  </select>
+                  </table>
                 </div>
-                <div class="receta2">
-                  <span class="nombre-campo"> Duración: </span>
-                  <input class="input-48" type="number" id="duracion" name="duracion" min="1" pattern="^[0-9]+" />
-                </div>
-                <div class="receta2">
-                  <span class="nombre-campo"> Dosis diaria: </span>
-                  <input class="input-48" type="number" id="dosis" name="dosis" min="1" pattern="^[0-9]+" />
-                </div>
-                <div class="receta2">
-                  <span class="nombre-campo"> Posología </span>
-                  <h4>
-                    <textarea class="texto-area" name="posologia" type="text"></textarea>
-                  </h4>
-                </div>
-                <div class="receta2">
-                  <span class="nombre-campo"> Detalle prescripción </span>
-                  <h4>
-                    <textarea class="texto-area" name="detalle" type="text"></textarea>
-                  </h4>
-                </div>
-                <div class="botones">
-                  <button class="btn b-guardar" formmethod="POST">
-                    <h4>AGREGAR <i class="fa fa-save fa-lg"></i></h4>
-                  </button>
-  
-                </div>
+
               </form>
             </div>
           </div>
+          <div class="row">
+            <!--Espacio detalle receta-->
+            <div class="col-xs-12 col-md-12 col-lg-5 start-lg">
 
-                 <!--Espacio buscar receta-->
-   <div class="col-xs-12 col-md-12 col-lg-5 start-lg">
-    <form method="GET" class="formulario-receta2">
-      {% csrf_token %}
-      <!--Buscar -->
-      <div class="contenedor-inputs">
-        <div class="ancho-48">
-          <input class="campo-buscar" type="search" name="q" value="{{ request.GET.q }}" required
-            placeholder="Buscar nombre fármaco " />
-          <button class="b-buscar" type="submit" name="submit" value="Search">
-            <i class="fa fa-search fa-lg" style="font-size: 20px; color: #fff;"></i>
-          </button>
+              <div class="container">
+                <form class="area-receta2 formulario-receta2 " method="POST">
+                  {% csrf_token %}
+                  <div class="receta2">
+                    <label>Código medicamento:</label>
+                    <input class="input-30" id="medicamentoadd" name="medicamentoadd">
+                  </div>
+                  <div class="receta2">
+                    <label>Tipo de tratamiento:</label>
+                    <select class="input-30" required name="tipo_tratamiento">
+                      {% if tratamiento%}
+                      {% for i in tratamiento%}
+                      <option value="{{i.id_tipo_tratamiento}}">{{i.tipo_tratamiento}}</option>
+                      {% endfor %}
+                      {%endif%}
+                    </select>
+                  </div>
+                  <div class="receta2">
+                    <span class="nombre-campo"> Duración: </span>
+                    <input class="input-30" type="number" id="duracion" name="duracion" min="1" pattern="^[0-9]+" />
+                  </div>
+                  <div class="receta2">
+                    <span class="nombre-campo"> Dosis diaria: </span>
+                    <input class="input-30" type="number" id="dosis" name="dosis" min="1" pattern="^[0-9]+" />
+                  </div>
+                  <div class="receta2">
+                    <span class="nombre-campo"> Posología </span>
+                    <h4>
+                      <textarea class="texto-area" name="posologia" type="text"></textarea>
+                    </h4>
+                  </div>
+                  <div class="receta2">
+                    <span class="nombre-campo"> Detalle prescripción </span>
+                    <h4>
+                      <textarea class="texto-area" name="detalle" type="text"></textarea>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </h4>
+                  </div>
+                  <div class="botones">
+                    <button class="btn b-guardar" formmethod="POST">
+                      <h4>AGREGAR <i class="fa fa-save fa-lg"></i></h4>
+                    </button>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!--Espacio buscar receta-->
+            <div class="col-xs-12 col-md-12 col-lg-5 start-lg">
+
+
+              <div class="row center-xs mensajes">
+                {% if messages %}
+                <ul>
+                  {% for message in messages %}
+                  <li class="{{ message.tags }}">{{ message }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+
+
+              <!--Listview medicamentos agregados-->
+              <div class="prueba">
+
+
+                <div class="ancho-100" id="main-container">
+
+
+
+
+                  <!--PRUEBA PARA LA TABLA -->
+                  <div class="tabla-prueba">
+                    <thead>
+                      <tr>
+                        <h3>Medicamentos prescritos:</h3>
+                      </tr>
+                    </thead>
+                    {%if detallereceta%}
+                    {%for j in detallereceta%}
+                    <tr class="listarAgregados" id="{{j.codigo}}">
+                      <li>
+                        <h4><b>{{j.codigo.nombre_medicamento}}</b> en {{j.codigo.id_tipo_med.nombre_tipo_med}}:
+                          {{j.dosis_diaria}}
+                          unidades/dosis por {{j.duracion_tratamiento}} días</h4>
+                      </li>
+                    </tr>
+                    {%endfor%}
+                    {%endif%}
+
+
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-    </form>
-    
-    <div class="row center-xs mensajes">
-      {% if messages %}
-      <ul>
-        {% for message in messages %}
-        <li class="{{ message.tags }}">{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </div>
-    
-    <div class="ancho-100" id="main-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre medicamento</th>
-            <th>Tipo</th>
-            <th>Stock</th>
-            <th></th>
-          </tr>
-        </thead>
-        {% if remedios%}
-        {% for n in remedios%}
-        <tr class="listar" id="{{n.codigo}}">
-          <td>{{n.nombre_medicamento}}</td>
-          <td>{{n.id_tipo_med.nombre_tipo_med}}</td>
-          <td></td>
-          <td>
-            <button class="btn-x" type="button" id="add">
-              <i class="fa fa-plus fa-lg"> </i>
-            </button>
-          </td>
-        </tr>
-        {% endfor %}
-        {%endif%}
-      </table>
-    </div>
-    <!--Listview medicamentos agregados-->
-    <div class="col-xs-12 col-md-12 col-lg-12">
-      <h4>Medicamentos agregados</h4>
-    </div>
-    <div class="ancho-100" id="main-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre medicamento</th>
-            <th>Tipo</th>
-            <th>Duración</th>
-            <th>Dosis diaria</th>
-            <!--<th>Eliminar</th>-->
-          </tr>
-        </thead>
-        {%if detallereceta%}
-        {%for j in detallereceta%}
-        <tr class="listarAgregados" id="{{j.codigo}}">
-          <td>{{j.codigo.nombre_medicamento}}</td>
-          <td>{{j.codigo.id_tipo_med.nombre_tipo_med}}</td>
-          <td>{{j.duracion_tratamiento}} - dias</td>
-          <td>{{j.dosis_diaria}} - unidades</td>
-         <!-- <td>
-            <button class="btn-x" type="button" id="add">
-              <i class="fa fa-plus fa-lg"> </i>
-            </button>
-          </td>-->
-        </tr>
-        {%endfor%}
-        {%endif%}
-      
-      </table>
-    </div>
-  </div>   
-         </div>
-                
-        </div>
-        
-      </div>   
+
+      </div>
     </section>
   </div>
 
@@ -248,5 +268,3 @@
 </body>
 
 </html>
-
-

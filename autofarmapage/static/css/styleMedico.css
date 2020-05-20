@@ -85,7 +85,7 @@ body {
 }
 
 .btn-x {
-  background-color: #68c2dc;
+  background-color: #1290cb;
   color: #fff;
   border: none;
   padding: 2px 3px;
@@ -749,14 +749,20 @@ input:disabled {
   text-align: left;
 }
 
+btn-x a, a:link, a:visited, a:active { 
+  color: #fff;
+  text-decoration: none;
+}
+
+
 
 .area-receta2 {
-  width: 700px;
-  text-align: left;
-
-}
-
-.receta2 {
+  width: 1000px;
   
-max-width: 80%;
+
 }
+
+.receta2 input {
+  text-align: center;
+}
+
