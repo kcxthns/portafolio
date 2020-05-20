@@ -30,6 +30,7 @@ urlpatterns = [
     path('registrar-tutor', views.registrartutor, name="registrar-tutor"),
     path('agregar-tutor/<slug:rut>', views.agregarTutor, name='agregar-tutor'),
     path('ver-recetas', views.verRecetas, name="ver-recetas"),
+    path('ver-receta2/<int:id_receta>',views.verReceta2, name='ver-receta2'),
 
     #urls modificaciones contraseña
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(

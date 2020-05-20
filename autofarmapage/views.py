@@ -137,14 +137,13 @@ def guardadoTutorExito(request):
 
 
 def listarusuario(request):
-    person = Persona.objects.filter(
-        id_centro=request.user.rut.id_centro).order_by('rut')
+    person = Persona.objects.filter(id_centro=request.user.rut.id_centro).order_by('rut')
 
     if request.method == 'GET':
         criterio_busqueda = request.GET.get('q')
         submitBtn = request.GET.get('submit')
         if criterio_busqueda is not None:
-            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(rut=criterio_busqueda).order_by('rut')
+            person = Persona.objects.filter(id_centro=request.user.rut.id_centro).filter(rut=criterio_busqueda)
             paginador = Paginator(person, 20)
             pagina = request.GET.get('page')
             person = paginador.get_page(pagina)
@@ -707,7 +706,22 @@ def agregarTutor(request, rut):
 
 
 def verRecetas(request):
-    return render(request, 'autofarmapage/ver-recetas.html', {})
+    receta = Receta.objects.all().order_by('fecha_receta')
+    data = {'receta':receta}
+    if request.method == 'GET':
+        entrada = request.GET.get('q')
+        btn = request.GET.get('submit')
+        if entrada is not None:
+            receta = Receta.objects.filter(rut_paciente=entrada)
+            data={'receta':receta}
+            return render(request, 'autofarmapage/ver-recetas.html', data)   
+    return render(request, 'autofarmapage/ver-recetas.html', data) 
+
+def verReceta2(request, id_receta):
+    receta = Receta.objects.get(id_receta=id_receta)
+    detallereceta = DetalleReceta.objects.filter(id_receta=id_receta)
+    datata = {'receta':receta, 'detallereceta':detallereceta}
+    return render(request, 'autofarmapage/ver-receta2.html',datata)
 
 # este es la forma con el form de django en el html la vista
 # de html que deben usar es la llamada editarpage
