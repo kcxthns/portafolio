@@ -18,42 +18,46 @@
     <form id="formulario-ver-receta" method="GET" class="formulario-ver-receta">
         <div class="contenedor-inputs">
             <div class="ancho-48">
-                <input class="campo-buscar" type="search" name="q" value="{{ request.GET.q}}" required placeholder="Buscar por RUT paciente" />
+                <input class="campo-buscar" type="search" name="q" value="{{ request.GET.q}}" required
+                    placeholder="Buscar por RUT paciente" />
                 <button class="b-buscar" type="submit" name="submit" value="Search">
                     <i class="fa fa-search fa-lg" style="font-size: 20px; color: #fff;"></i>
                 </button>
             </div>
     </form>
 
-            <div class="ancho-100" id="main-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>RUT paciente</th>
-                            <th>Nombre paciente</th>
-                            <th>Fecha emisión</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    {%if receta%}
-                    {%for i in receta%}
-                    <tr>
-                        <td>{{i.rut_paciente.rut}}</td>
-                        <td>{{i.rut_paciente.nombres}} {{i.rut_paciente.apellido_paterno}}</td>
-                        <td>{{i.fecha_receta}}</td>
-                        <td>
-                            <button class="btn-x" type="button">
-                                <a href="{% url 'ver-receta2' i.id_receta %}">VER</a>
-                            </button>
-                        </td>
-                    </tr>
-                    {%endfor%}
-                    {%endif%}
-                </table>
-            </div>
+    <div class="ancho-100" id="main-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>RUT paciente</th>
+                    <th>Nombre paciente</th>
+                    <th>Fecha emisión</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {%if receta%}
+            {%for i in receta%}
+            <tr>
+                <td>{{i.rut_paciente.rut}}</td>
+                <td>{{i.rut_paciente.nombres}} {{i.rut_paciente.apellido_paterno}}</td>
+                <td>{{i.fecha_receta}}</td>
+                <td>
+                    <button class="btn-x" type="button">
+                        <a href="{% url 'ver-receta2' i.id_receta %}"><i class="fa fa-eye fa-lg"> </i></a>
 
-        </div>
-    
+
+
+                    </button>
+                </td>
+            </tr>
+            {%endfor%}
+            {%endif%}
+        </table>
+    </div>
+
+</div>
+
 </div>
 
 
